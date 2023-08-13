@@ -11,6 +11,123 @@ logger = logging.getLogger(__file__)
 
 
 def get_product_list(page, campaign_id, access_token):
+    """Получить список товаров Яндекс Маркета.
+
+    Обращается к API Яндекс Маркета за списком созданных товаров.
+
+    Args:
+        page (str): Идентификатор последнего значения на странице.
+        campaign_id (str): Идентификатор кампании и идентификатор магазина
+        Яндекс Маркета.
+        access_token (str): API-токен продавца Яндекс Маркета.
+
+    Returns:
+        dict: Ответ Яндекс Маркета.
+
+    Raises:
+        HTTPError: Если код ответа не 200.
+
+    Examples:
+        >>> get_product_list(page, campaign_id, access_token)
+        {
+            "status": "OK",
+            "result": {
+                "paging": {
+                    "nextPageToken": "string",
+                    "prevPageToken": "string"
+                },
+                "offerMappingEntries": [
+                    {
+                        "offer": {
+                            "name": "Ударная дрель Makita HP1630, 710 Вт",
+                            "shopSku": "string",
+                            "category": "string",
+                            "vendor": "LEVENHUK",
+                            "vendorCode": "VNDR-0005A",
+                            "description": "string",
+                            "id": "string",
+                            "feedId": 0,
+                            "price": 0,
+                            "barcodes": [
+                                46012300000000
+                            ],
+                            "urls": [
+                                "string"
+                            ],
+                            "pictures": [
+                                "string"
+                            ],
+                            "manufacturer": "string",
+                            "manufacturerCountries": [
+                                "string"
+                            ],
+                            "minShipment": 0,
+                            "transportUnitSize": 0,
+                            "quantumOfSupply": 0,
+                            "deliveryDurationDays": 0,
+                            "boxCount": 0,
+                            "customsCommodityCodes": [
+                                "string"
+                            ],
+                            "weightDimensions": {
+                                "length": 65.55,
+                                "width": 50.7,
+                                "height": 20,
+                                "weight": 1.001
+                            },
+                            "supplyScheduleDays": [
+                                "MONDAY"
+                            ],
+                            "shelfLifeDays": 0,
+                            "lifeTimeDays": 0,
+                            "guaranteePeriodDays": 0,
+                            "processingState": {
+                                "status": "UNKNOWN",
+                                "notes": [
+                                    {
+                                        "type": "ASSORTMENT",
+                                        "payload": "string"
+                                    }
+                                ]
+                            },
+                            "availability": "ACTIVE",
+                            "shelfLife": {
+                                "timePeriod": 0,
+                                "timeUnit": "HOUR",
+                                "comment": "string"
+                            },
+                            "lifeTime": {
+                                "timePeriod": 0,
+                                "timeUnit": "HOUR",
+                                "comment": "string"
+                            },
+                            "guaranteePeriod": {
+                                "timePeriod": 0,
+                                "timeUnit": "HOUR",
+                                "comment": "string"
+                            },
+                            "certificate": "string"
+                        },
+                        "mapping": {
+                            "marketSku": 0,
+                            "modelId": 0,
+                            "categoryId": 0
+                        },
+                        "awaitingModerationMapping": {
+                            "marketSku": 0,
+                            "modelId": 0,
+                            "categoryId": 0
+                        },
+                        "rejectedMapping": {
+                            "marketSku": 0,
+                            "modelId": 0,
+                            "categoryId": 0
+                        }
+                    }
+                ]
+            }
+        }
+    """
     endpoint_url = "https://api.partner.market.yandex.ru/"
     headers = {
         "Content-Type": "application/json",
@@ -30,6 +147,40 @@ def get_product_list(page, campaign_id, access_token):
 
 
 def update_stocks(stocks, campaign_id, access_token):
+    """Обновить остатки.
+
+    Обновляет на Яндекс Маркете информацию о количестве товаров.
+
+    Args:
+        stocks (list): Список обновленного количества товаров.
+        campaign_id (str): Идентификатор кампании и идентификатор магазина
+        Яндекс Маркета.
+        access_token (str): API-токен продавца Яндекс Маркета.
+
+    Returns:
+        response_object (dict): Ответ Яндекс Маркета Ozon в формате json об
+        успешности операции.
+
+    Raises:
+        HTTPError: Если код ответа не 200.
+
+    Examples:
+        >>> update_stocks(stocks, campaign_id, access_token)
+        {
+            "status": "OK"
+        }
+
+        >>> update_stocks(stocks, campaign_id, access_token)
+        {
+            "status": "OK",
+            "errors": [
+                {
+                    "code": "string",
+                    "message": "string"
+                }
+            ]
+        }
+    """
     endpoint_url = "https://api.partner.market.yandex.ru/"
     headers = {
         "Content-Type": "application/json",
@@ -46,6 +197,40 @@ def update_stocks(stocks, campaign_id, access_token):
 
 
 def update_price(prices, campaign_id, access_token):
+    """Обновить цены товаров.
+
+    Обновляет на Яндекс Маркете информацию о стоимости остатков.
+
+    Args:
+        prices (list): Список новых цен товаров.
+        campaign_id (str): Идентификатор кампании и идентификатор магазина
+        Яндекс Маркета.
+        access_token (str): API-токен продавца Яндекс Маркета.
+
+    Returns:
+        response_object (dict): Ответ Яндекс Маркета в формате json об
+        успешности операции.
+
+    Raises:
+        HTTPError: Если код ответа не 200.
+
+    Examples:
+        >>> update_price(prices, campaign_id, access_token)
+        {
+            "status": "OK"
+        }
+
+        >>> update_price(prices, campaign_id, access_token)
+        {
+            "status": "OK",
+            "errors": [
+                {
+                    "code": "string",
+                    "message": "string"
+                }
+            ]
+        }
+    """
     endpoint_url = "https://api.partner.market.yandex.ru/"
     headers = {
         "Content-Type": "application/json",
@@ -62,7 +247,25 @@ def update_price(prices, campaign_id, access_token):
 
 
 def get_offer_ids(campaign_id, market_token):
-    """Получить артикулы товаров Яндекс маркета"""
+    """Получить артикулы товаров Яндекс Маркета.
+
+    Постранично запрашивает артикулы созданных товаров у Яндекс Маркета.
+
+    Args:
+        campaign_id (str): Идентификатор кампании и идентификатор магазина
+        Яндекс Маркета.
+        market_token (str): API-токен продавца Яндекс Маркета.
+
+    Returns:
+        offer_ids (list): Список артикулов товаров Яндекс Маркета.
+
+    Raises:
+        HTTPError: Если код ответа не 200.
+
+    Examples:
+        >>> get_offer_ids(campaign_id, market_token)
+        ["136748", "168448", "528148", "236297"]
+    """
     page = ""
     product_list = []
     while True:
@@ -78,6 +281,46 @@ def get_offer_ids(campaign_id, market_token):
 
 
 def create_stocks(watch_remnants, offer_ids, warehouse_id):
+    """Сформировать список товаров в наличии и их количества.
+
+    На основании данных с сайта timeworld.ru заполняет информацию об
+    остатках для Яндекс Маркета.
+
+    Args:
+        watch_remnants (list): Список словарей с информацией о товарах.
+        offer_ids (list): Список артикулов товаров Яндекс Маркета.
+        warehouse_id (str): ID склада.
+
+    Returns:
+        stocks (list): Список обновленного количества товаров.
+
+    Examples:
+        >>> create_stocks(watch_remnants, offer_ids, warehouse_id)
+        [
+            {
+                "sku": "48852",
+                "warehouseId": "143645",
+                "items": [
+                    {
+                        "count": 0,
+                        "type": "FIT",
+                        "updatedAt": "2023-08-13T19:50:21Z",
+                    }
+                ],
+            },
+            {
+                "sku": "48857",
+                "warehouseId": "143645",
+                "items": [
+                    {
+                        "count": 2,
+                        "type": "FIT",
+                        "updatedAt": "2023-08-13T19:50:21Z",
+                    }
+                ],
+            }
+        ]
+    """
     # Уберем то, что не загружено в market
     stocks = list()
     date = str(datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z")
@@ -123,6 +366,31 @@ def create_stocks(watch_remnants, offer_ids, warehouse_id):
 
 
 def create_prices(watch_remnants, offer_ids):
+    """Обновление цен товаров.
+
+    На основании данных с сайта timeworld.ru заполняет информацию о новых
+    ценах для Яндекс Маркета.
+
+    Args:
+        watch_remnants (list): Список словарей с информацией о товарах.
+        offer_ids (list): Список артикулов товаров Яндекс Маркета.
+
+    Returns:
+        prices (list): Список новых цен товаров.
+
+    Examples:
+        >>> create_prices(watch_remnants, offer_ids)
+        [
+            {
+                "id": "48852",
+                "price": {
+                    "value": 24570,
+                    "currencyId": "RUR",
+                },
+            }
+        ]
+
+    """
     prices = []
     for watch in watch_remnants:
         if str(watch.get("Код")) in offer_ids:
@@ -143,6 +411,35 @@ def create_prices(watch_remnants, offer_ids):
 
 
 async def upload_prices(watch_remnants, campaign_id, market_token):
+    """Загрузить список цен на Яндекс Маркет.
+
+    Обновляет цены товаров на Яндекс Маркет в соответствии с полученными в
+    watch_remnants данными.
+
+    Args:
+        watch_remnants (list): Список словарей с информацией о товарах.
+        campaign_id (str): Идентификатор кампании и идентификатор магазина
+        Яндекс Маркета.
+        market_token (str): API-токен продавца Яндекс Маркета.
+
+    Returns:
+        prices (list): Список новых цен товаров.
+
+    Raises:
+        HTTPError: Если код ответа не 200.
+
+    Examples:
+        >>> upload_prices(watch_remnants, campaign_id, market_token)
+        [
+            {
+                "id": "48852",
+                "price": {
+                    "value": 24570,
+                    "currencyId": "RUR",
+                },
+            }
+        ]
+    """
     offer_ids = get_offer_ids(campaign_id, market_token)
     prices = create_prices(watch_remnants, offer_ids)
     for some_prices in list(divide(prices, 500)):
@@ -151,6 +448,66 @@ async def upload_prices(watch_remnants, campaign_id, market_token):
 
 
 async def upload_stocks(watch_remnants, campaign_id, market_token, warehouse_id):
+    """Загрузить количество товаров на Яндекс Маркет.
+
+    Обновляет количество товаров на Яндекс Маркет в соответствии с
+    полученными в watch_remnants данными. Формирует отдельным списком
+    товары, которые есть в наличии.
+
+    Args:
+        watch_remnants (list): Список словарей с информацией о товарах.
+        campaign_id (str): Идентификатор кампании и идентификатор магазина
+        Яндекс Маркета.
+        market_token (str): API-токен продавца Яндекс Маркета.
+        warehouse_id (): ID склада.
+
+    Returns:
+        not_empty (list): Список товаров, которые есть в наличии.
+        stocks (list): Список обновленного количества товаров.
+
+    Raises:
+        HTTPError: Если код ответа не 200.
+
+    Examples:
+        >>> upload_stocks(watch_remnants, campaign_id, market_token, warehouse_id)
+        [
+            {
+                "sku": "48857",
+                "warehouseId": "143645",
+                "items": [
+                    {
+                        "count": 2,
+                        "type": "FIT",
+                        "updatedAt": "2023-08-13T19:50:21Z",
+                    }
+                ],
+            }
+        ],
+        [
+            {
+                "sku": "48852",
+                "warehouseId": "143645",
+                "items": [
+                    {
+                        "count": 0,
+                        "type": "FIT",
+                        "updatedAt": "2023-08-13T19:50:21Z",
+                    }
+                ],
+            },
+            {
+                "sku": "48857",
+                "warehouseId": "143645",
+                "items": [
+                    {
+                        "count": 2,
+                        "type": "FIT",
+                        "updatedAt": "2023-08-13T19:50:21Z",
+                    }
+                ],
+            }
+        ]
+    """
     offer_ids = get_offer_ids(campaign_id, market_token)
     stocks = create_stocks(watch_remnants, offer_ids, warehouse_id)
     for some_stock in list(divide(stocks, 2000)):
