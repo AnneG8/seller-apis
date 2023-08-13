@@ -12,7 +12,7 @@ logger = logging.getLogger(__file__)
 
 
 def get_product_list(last_id, client_id, seller_token):
-    """Получить список товаров магазина озон.
+    """Получить список товаров магазина Ozon.
 
     Обращается к API Ozon Seller за списком созданных товаров.
 
@@ -74,7 +74,7 @@ def get_product_list(last_id, client_id, seller_token):
 
 
 def get_offer_ids(client_id, seller_token):
-    """Получить артикулы товаров магазина озон.
+    """Получить артикулы товаров магазина Ozon.
 
     Постранично запрашивает артикулы созданных товаров у API Ozon Seller.
 
@@ -83,7 +83,7 @@ def get_offer_ids(client_id, seller_token):
         seller_token (str): API-ключ Ozon.
 
     Returns:
-        offer_ids (list): Список артикулов товаров озон.
+        offer_ids (list): Список артикулов товаров Ozon.
 
     Raises:
         HTTPError: Если код ответа не 200.
@@ -266,7 +266,7 @@ def create_stocks(watch_remnants, offer_ids):
 
     Args:
         watch_remnants (list): Список словарей с информацией о товарах.
-        offer_ids (list): Список артикулов товаров озон.
+        offer_ids (list): Список артикулов товаров Ozon.
 
     Returns:
         stocks (list): Список обновленного количества товаров.
